@@ -58,13 +58,18 @@ function updateCoffees() {
         console.log(selectedCoffee);
         document.getElementById('coffees').innerHTML = displayCoffee(selectedCoffee);
     }
+    var roastSelect= document.getElementById('roast-addition');
+    var textAddition= document.getElementById("new-name");
+    filteredCoffees.push({name:textAddition.value,roast: roastSelect.value })
     document.getElementById('coffee-search').addEventListener('keyup', filterCoffee);
 
 }
 
+//ToDo: input from select and input text.value new-name roast-addition
+//ToDo: submit button is an event listener
+//ToDo: take both inputs and push onto the current "array"
 
-//TODO: Filter based on select value. It should output a revised coffee array so the search coffee name filter isn't affected.
-//TODO: Create an input search text
+
 
 
 
