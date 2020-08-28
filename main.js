@@ -32,21 +32,31 @@ var coffees = [
 
 //TODO: Show the array as a string
 
-var displayCoffee = function(){
+var displayCoffee = function(array){
     var html = ""
-    coffees.forEach(function(coffee){
+    array.forEach(function(coffee){
         var eachCoffee = "<h2>" + coffee.name + "</h2><p>" + coffee.roast + "</p>";
         html += eachCoffee;
     })
     return html;
 }
-document.getElementById('coffees').innerHTML = displayCoffee();
+document.getElementById('coffees').innerHTML = displayCoffee(coffees);
 
 //TODO: Create an input search text
 
 //TODO: Add Event Listener
 
-var filterCoffee = function() {
+
+
+
+var filterCoffee = function(){
+    var selectedCoffee = coffees.filter(function(coffee){
+        return coffee.name.toLowerCase().includes(document.getElementById('coffee-search').value);
+    })
+    var inputValue= document.getElementById('coffee-search').value;
+    console.log(inputValue);
+    console.log(selectedCoffee);
+    document.getElementById('coffees').innerHTML = displayCoffee(selectedCoffee);
 }
 document.getElementById('coffee-search').addEventListener('keyup', filterCoffee);
 
