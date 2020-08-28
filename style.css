@@ -1,18 +1,12 @@
-/** {*/
-/*    box-sizing: border-box;*/
-/*    margin: 0;*/
-/*    padding: 20px;*/
-/*}*/
-
 body {
     background-color: #f2f1e7;
 }
 
-.coffeename {
+.coffee-name {
     color: #5c4d4d;
 }
 
-.coffeeroast {
+.coffee-roast {
     color: #915b4a;
 }
 
@@ -28,5 +22,5 @@ body {
 h1 {
     font-size: 4em !important;
     color: #5c4d4d !important;
-    text-shadow: 2px 2px 4px #5c4d4d;
+    text-shadow: 2px 2px 2px #5c4d4d;
 }
