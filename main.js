@@ -1,15 +1,7 @@
 "use strict"
 
-/*function updateCoffees(e) {
-    e.preventDefault(); // don't submit the form, we just want to update the data
-    var selectedRoast = roastSelection.value;
-    var filteredCoffees = [];
-    coffees.forEach(function(coffee) {
-        if (coffee.roast === selectedRoast) {
-            filteredCoffees.push(coffee);
-        }
-    });
-    tbody.innerHTML = renderCoffees(filteredCoffees);
+
+    /*tbody.innerHTML = renderCoffees(filteredCoffees);
 }*/
 
 // from http://www.ncausa.org/About-Coffee/Coffee-Roasts-Guide
@@ -40,25 +32,45 @@ var displayCoffee = function(array){
     })
     return html;
 }
-document.getElementById('coffees').innerHTML = displayCoffee(coffees);
+updateCoffees();
 
+//TODO: Create a SELECT TAG with coffee.roast options
+//TODO: Add event listener
+function updateCoffees() {
+    //e.preventDefault(); // don't submit the form, we just want to update the data
+    var selectedRoast = document.getElementById('roast-selection').value;
+    var filteredCoffees = [];
+    if(selectedRoast === 'all'){
+        filteredCoffees = coffees;
+    }
+    coffees.forEach(function (coffee) {
+        if (coffee.roast === selectedRoast) {
+            filteredCoffees.push(coffee);
+        }
+    });
+    document.getElementById('coffees').innerHTML = displayCoffee(filteredCoffees);
+    var filterCoffee = function(){
+        var selectedCoffee = filteredCoffees.filter(function(coffee){
+            return coffee.name.toLowerCase().includes(document.getElementById('coffee-search').value);
+        })
+        var inputValue= document.getElementById('coffee-search').value;
+        console.log(inputValue);
+        console.log(selectedCoffee);
+        document.getElementById('coffees').innerHTML = displayCoffee(selectedCoffee);
+    }
+    document.getElementById('coffee-search').addEventListener('keyup', filterCoffee);
+
+}
+
+
+//TODO: Filter based on select value. It should output a revised coffee array so the search coffee name filter isn't affected.
 //TODO: Create an input search text
 
-//TODO: Add Event Listener
 
 
 
+//Filter array
 
-var filterCoffee = function(){
-    var selectedCoffee = coffees.filter(function(coffee){
-        return coffee.name.toLowerCase().includes(document.getElementById('coffee-search').value);
-    })
-    var inputValue= document.getElementById('coffee-search').value;
-    console.log(inputValue);
-    console.log(selectedCoffee);
-    document.getElementById('coffees').innerHTML = displayCoffee(selectedCoffee);
-}
-document.getElementById('coffee-search').addEventListener('keyup', filterCoffee);
 
 
     /*var html = ""
@@ -72,9 +84,8 @@ document.getElementById('coffee-search').addEventListener('keyup', filterCoffee)
 }*/
 
 
-//TODO: Filter array
 
-var submitButton = document.querySelector('#submit');
-var roastSelection = document.querySelector('#roast-selection');
 
-//submitButton.addEventListener('click', updateCoffees);
+
+
+
