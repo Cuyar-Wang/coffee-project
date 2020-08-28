@@ -1,6 +1,6 @@
 "use strict"
 
-function updateCoffees(e) {
+/*function updateCoffees(e) {
     e.preventDefault(); // don't submit the form, we just want to update the data
     var selectedRoast = roastSelection.value;
     var filteredCoffees = [];
@@ -10,7 +10,7 @@ function updateCoffees(e) {
         }
     });
     tbody.innerHTML = renderCoffees(filteredCoffees);
-}
+}*/
 
 // from http://www.ncausa.org/About-Coffee/Coffee-Roasts-Guide
 var coffees = [
@@ -30,7 +30,41 @@ var coffees = [
     {id: 14, name: 'French', roast: 'dark'},
 ];
 
+//TODO: Show the array as a string
+
+var displayCoffee = function(){
+    var html = ""
+    coffees.forEach(function(coffee){
+        var eachCoffee = "<h2>" + coffee.name + "</h2><p>" + coffee.roast + "</p>";
+        html += eachCoffee;
+    })
+    return html;
+}
+document.getElementById('coffees').innerHTML = displayCoffee();
+
+//TODO: Create an input search text
+
+//TODO: Add Event Listener
+
+var filterCoffee = function() {
+}
+document.getElementById('coffee-search').addEventListener('keyup', filterCoffee);
+
+
+    /*var html = ""
+    coffees.forEach(function(coffee){
+        if (coffee.name.includes(inputName.value)){
+            var eachCoffee = "<h2>" + coffee.name + "</h2><p>" + coffee.roast + "</p>";
+            html += eachCoffee;
+        }
+    })
+    return html;
+}*/
+
+
+//TODO: Filter array
+
 var submitButton = document.querySelector('#submit');
 var roastSelection = document.querySelector('#roast-selection');
 
-submitButton.addEventListener('click', updateCoffees);
+//submitButton.addEventListener('click', updateCoffees);
