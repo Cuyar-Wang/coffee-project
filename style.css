@@ -1,9 +1,32 @@
-table {
-    border-collapse: collapse;
-    margin: 15px 0;
+/** {*/
+/*    box-sizing: border-box;*/
+/*    margin: 0;*/
+/*    padding: 20px;*/
+/*}*/
+
+body {
+    background-color: #f2f1e7;
 }
 
-td, th {
-    border: 1px solid black;
-    padding: 5px 10px;
+.coffeename {
+    color: #5c4d4d;
+}
+
+.coffeeroast {
+    color: #915b4a;
+}
+
+.coffee-nav {
+    background-color: #a96851;
+}
+
+.nav-logo {
+    color: #5c4d4d !important;
+    font-size: 2em !important;
+}
+
+h1 {
+    font-size: 4em !important;
+    color: #5c4d4d !important;
+    text-shadow: 2px 2px 4px #5c4d4d;
 }

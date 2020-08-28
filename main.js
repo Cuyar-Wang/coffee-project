@@ -27,7 +27,7 @@ var coffees = [
 var displayCoffee = function(array){
     var html = ""
     array.forEach(function(coffee){
-        var eachCoffee = "<h2>" + coffee.name + "</h2><p>" + coffee.roast + "</p>";
+        var eachCoffee = "<h2 class='coffeename'>" + coffee.name + "</h2><p class='coffeeroast'>" + coffee.roast + "</p>";
         html += eachCoffee;
     })
     return html;
@@ -58,22 +58,21 @@ function updateCoffees() {
         console.log(selectedCoffee);
         document.getElementById('coffees').innerHTML = displayCoffee(selectedCoffee);
     }
-    var roastSelect= document.getElementById('roast-addition');
-    var textAddition= document.getElementById("new-name");
-    filteredCoffees.push({name:textAddition.value,roast: roastSelect.value })
-    document.getElementById('coffee-search').addEventListener('keyup', filterCoffee);
 
+    document.getElementById('coffee-search').addEventListener('keyup', filterCoffee);
 }
 
-//ToDo: input from select and input text.value new-name roast-addition
-//ToDo: submit button is an event listener
-//ToDo: take both inputs and push onto the current "array"
+function addNewCoffee() {
+    var roastSelect= document.getElementById('roast-addition');
+    var textAddition= document.getElementById("new-name");
+    var newCoffee = {id: coffees.length + 1, name: textAddition.value, roast: roastSelect.value};
+    coffees.push(newCoffee);
+    console.log(newCoffee);
+    console.log(coffees);
+    document.getElementById('coffees').innerHTML = displayCoffee(coffees);
+}
 
-
-
-
-
-
+document.getElementById('new-button').addEventListener('click', addNewCoffee)
 //Filter array
 
 
