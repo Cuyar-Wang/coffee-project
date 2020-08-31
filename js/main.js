@@ -69,24 +69,26 @@ function addNewCoffee() {
     }
     coffees.push(newCoffee);
     document.getElementById('coffees').innerHTML = displayCoffee(coffees);
-    // var coffeeJSON = JSON.stringify(newCoffee);
-    // localStorage.setItem('newCoffee', coffeeJSON )
+    storeIntoLocal(newCoffee);
     console.log(newCoffee);
     console.log(coffees);
 }
 
-// function storeLocal() {
-//     var myObj, myJSON, text, obj;
-//
-//     myObj = { name: "John", age: 31, city: "New York" };
-//     myJSON = JSON.stringify(myObj);
-//     localStorage.setItem("testJSON", myJSON);
-//
-// // Retrieving data:
-//     text = localStorage.getItem("testJSON");
-//     obj = JSON.parse(text);
-//     document.getElementById("demo").innerHTML = obj.name;
-// }
+function storeIntoLocal(newItem) {
+    var coffeeJSON = JSON.stringify(newItem);
+    localStorage.setItem('newCoffee' + newItem.id, coffeeJSON);
+}
+function displayStorageLocal() {
+    for (var i = 15; i < 100; i++) {
+        var text = localStorage.getItem('newCoffee' + i);
+        var obj = JSON.parse(text);
+        var para = document.createElement("div");
+        para.innerHTML = `<a href ='#' onclick='storeCoffee("${obj.name}")' class='m-4 p-3'><h2 class='coffee-name text-center'>${obj.name}</h2><p class='coffee-roast text-center text-uppercase'>${obj.roast}</p></a>`;
+        document.getElementById("coffees").appendChild(para);
+        i++;
+    }
+}
+
 //TODO: Set up default. A separate array for the data and shopping cart.
 document.getElementById('new-button').addEventListener('click', addNewCoffee);
 let shoppingArray = [];
