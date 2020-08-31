@@ -91,14 +91,19 @@ function addNewCoffee() {
 document.getElementById('new-button').addEventListener('click', addNewCoffee);
 let shoppingArray = [];
 function defaultShopping(){
-    var i = 0;
-    while(window.localStorage.getItem('coffee' + i)){
+    let parent = document.getElementById('cart_box');
+    while (parent.firstChild){
+        parent.removeChild(parent.firstChild);
+    }
+   for(var i = 0; i < 20; i++) {
+    if (window.localStorage.getItem('coffee' + i)) {
         let dataShow = window.localStorage.getItem('coffee' + i);
         let divResponse = document.createElement('div');
-        divResponse.innerHTML = "<p id = '" + i + "'>" + dataShow + "              <a href='#'>Remove</a></p>";
+        divResponse.innerHTML = "<p id = '" + i + "'>" + dataShow + "              <a href='#' onclick = deleteItem(" + i + ")>Remove</a></p>";
         document.getElementById('cart_box').appendChild(divResponse);
         shoppingArray.push(dataShow);
-        i++;
+    }
+
     }
 }
 defaultShopping();
@@ -116,9 +121,36 @@ let storeCoffee = function(input){
     for (var i = 0; i < shoppingArray.length; i++){
         let dataShow = window.localStorage.getItem('coffee' + i);
         let divResponse = document.createElement('div');
-        divResponse.innerHTML = "<p id = '" + i + "'>" + dataShow + "              <a href='#'>Remove</a></p>";
+        divResponse.innerHTML = "<p id = '" + i + "'>" + dataShow + "              <a href='#' onclick = deleteItem(" + i + ")>Remove</a></p>";
         document.getElementById('cart_box').appendChild(divResponse);
+
     }
+
 }
 //TODO: Get rid of any div in parent container before new display. New display is going to create divs based on data. Each key will have its own div.
+let clearLocal = function() {
+    let dataClear = window.localStorage.clear();
+    shoppingArray = [];
+    document.getElementById('cart_box').innerHTML = "";
+
+}
 //TODO: add onclick on "remove" to delete from memory and display that specific div
+let deleteItem = function (input) {
+    let parent = document.getElementById('cart_box');
+    while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+    }
+    window.localStorage.removeItem('coffee' + input);
+    shoppingArray.splice(input, 1);
+
+    for (var i = 0; i < 20; i++) {
+        if (window.localStorage.getItem('coffee' + i)) {
+            let dataShow = window.localStorage.getItem('coffee' + i);
+            let divResponse = document.createElement('div');
+            divResponse.innerHTML = "<p id = '" + i + "'>" + dataShow + "              <a href='#' onclick = deleteItem(" + i + ")>Remove</a></p>";
+            document.getElementById('cart_box').appendChild(divResponse);
+        }
+
+    }
+}
+
