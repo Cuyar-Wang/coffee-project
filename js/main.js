@@ -69,8 +69,8 @@ function addNewCoffee() {
     }
     coffees.push(newCoffee);
     document.getElementById('coffees').innerHTML = displayCoffee(coffees);
-    var coffeeJSON = JSON.stringify(newCoffee);
-    localStorage.setItem('newCoffee', coffeeJSON )
+    // var coffeeJSON = JSON.stringify(newCoffee);
+    // localStorage.setItem('newCoffee', coffeeJSON )
     console.log(newCoffee);
     console.log(coffees);
 }
