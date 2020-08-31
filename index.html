@@ -15,41 +15,45 @@
         < / Coffee >
     </a>
 </nav>
-<main class="container my-5">
+<main class="container mt-5 mb-3">
     <section class="row">
-        <div class="col-5">
+        <div class="col-4">
     <h1 class="">Coffee!</h1>
     <form>
         <label for="roast-selection"></label>
-        <select id="roast-selection" onchange="updateCoffees()">
+        <select id="roast-selection" class="select-css my-3" onchange="updateCoffees()">
             <option value="all">all</option>
             <option value="light">light</option>
             <option value="medium">medium</option>
             <option value="dark">dark</option>
         </select>
+        <label for="coffee-search" class="my-3">Search for the coffee name below:</label>
         <br>
-        <label for="coffee-search">Search for the coffee name below:</label>
-        <br>
-        <input type="text" id="coffee-search" placeholder="Coffee Name...">
+        <input type="text" id="coffee-search" placeholder="Coffee Name..." class="w-100">
     </form>
         </div>
-        <div class="col-7">
-    <h1>Add your own Coffee!</h1>
+        <div class="col-6 offset-2">
+    <h1>Add a Coffee!</h1>
     <form>
-        <label for="roast-addition">Choose type of roast:</label>
-        <select id="roast-addition">
+        <label for="roast-addition" class="mb-3 mt-4">Choose type of roast:</label>
+        <select id="roast-addition" class="select-css my-3">
             <option value="light">light</option>
             <option value="medium">medium</option>
             <option value="dark">dark</option>
         </select>
-        <label for="new-name">Enter the name of the coffee you would like to add:</label>
-        <input id="new-name" type="text" placeholder="Name of Coffee...">
-        <button id="new-button" type="button">Submit</button>
+        <label for="new-name" class="my-3">Add your own coffee:</label>
+        <br>
+        <input id="new-name" type="text" placeholder="Name of Coffee..." class="w-100">
+        <br>
+        <div class="text-right">
+        <button id="new-button" type="button" class="btn button my-3">Submit</button>
+        </div>
     </form>
         </div>
     </section>
 </main>
-<div id="coffees" class="container">
+<hr>
+<div id="coffees" class="container d-flex flex-wrap align-content-center justify-content-center">
 </div>
 
     <script src="main.js"></script>
