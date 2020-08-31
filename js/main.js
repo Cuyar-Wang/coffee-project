@@ -22,7 +22,7 @@ var coffees = [
 var displayCoffee = function(array){
     var html = "";
     array.forEach(function(coffee){
-        var eachCoffee = "<h2 class='coffee-name'>" + coffee.name + "</h2><p class='coffee-roast'>" + coffee.roast + "</p>";
+        var eachCoffee = "<a href ='#' class='m-4 p-3'><h2 class='coffee-name text-center'>" + coffee.name + "</h2><p class='coffee-roast text-center text-uppercase'>" + coffee.roast + "</p></a>";
         html += eachCoffee;
     })
     return html;
