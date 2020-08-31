@@ -22,7 +22,7 @@ var coffees = [
 var displayCoffee = function(array){
     var html = "";
     array.forEach(function(coffee){
-        var eachCoffee = "<a href ='#' class='m-4 p-3'><h2 class='coffee-name text-center'>" + coffee.name + "</h2><p class='coffee-roast text-center text-uppercase'>" + coffee.roast + "</p></a>";
+        var eachCoffee = "<a href ='#' onclick='storeCoffee(" + "\'" + coffee.name +"'"+ ")' class='m-4 p-3'><h2 class='coffee-name text-center'>" + coffee.name + "</h2><p class='coffee-roast text-center text-uppercase'>" + coffee.roast + "</p></a>";
         html += eachCoffee;
     })
     return html;
@@ -87,5 +87,38 @@ function addNewCoffee() {
 //     obj = JSON.parse(text);
 //     document.getElementById("demo").innerHTML = obj.name;
 // }
-
+//TODO: Set up default. A separate array for the data and shopping cart.
 document.getElementById('new-button').addEventListener('click', addNewCoffee);
+let shoppingArray = [];
+function defaultShopping(){
+    var i = 0;
+    while(window.localStorage.getItem('coffee' + i)){
+        let dataShow = window.localStorage.getItem('coffee' + i);
+        let divResponse = document.createElement('div');
+        divResponse.innerHTML = "<p id = '" + i + "'>" + dataShow + "              <a href='#'>Remove</a></p>";
+        document.getElementById('cart_box').appendChild(divResponse);
+        shoppingArray.push(dataShow);
+        i++;
+    }
+}
+defaultShopping();
+
+//TODO: onclick function that stores the data by adding to the current array first and then storing it. Every time onclick is activated the local memory is stored again.
+let storeCoffee = function(input){
+    shoppingArray.push(input);
+    shoppingArray.forEach(function (shopping_item, i){
+        window.localStorage.setItem('coffee' + i, shopping_item);
+    });
+    let parent = document.getElementById('cart_box');
+    while (parent.firstChild){
+        parent.removeChild(parent.firstChild);
+    }
+    for (var i = 0; i < shoppingArray.length; i++){
+        let dataShow = window.localStorage.getItem('coffee' + i);
+        let divResponse = document.createElement('div');
+        divResponse.innerHTML = "<p id = '" + i + "'>" + dataShow + "              <a href='#'>Remove</a></p>";
+        document.getElementById('cart_box').appendChild(divResponse);
+    }
+}
+//TODO: Get rid of any div in parent container before new display. New display is going to create divs based on data. Each key will have its own div.
+//TODO: add onclick on "remove" to delete from memory and display that specific div
