@@ -94,3 +94,23 @@ hr {
 .select-css option {
     font-weight:normal;
 }
+#coffees a {
+    color: inherit;
+    text-decoration: none;
+    height: 150px;
+    width: 250px;
+
+}
+#coffees a:hover {
+    color: white;
+    background: url(../img/bean_in_coffee.jpg) no-repeat center center;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    text-shadow: 2px 2px 2px white;
+    width: 30%;
+    border-bottom: 3px double #5c4d4d;
+
+
+}
