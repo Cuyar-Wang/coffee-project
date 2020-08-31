@@ -61,18 +61,31 @@ function addNewCoffee() {
     var roastSelect= document.getElementById('roast-addition');
     var textAddition= document.getElementById("new-name");
     var newCoffee = {id: coffees.length + 1, name: textAddition.value, roast: roastSelect.value};
+    for (var i = 0; i < coffees.length; i++) {
+        if (coffees[i].name === newCoffee.name && coffees[i].roast === newCoffee.roast) {
+            alert('This coffee already exists.');
+            return;
+        }
+    }
     coffees.push(newCoffee);
-    // console.log(newCoffee);
-    // console.log(coffees);
     document.getElementById('coffees').innerHTML = displayCoffee(coffees);
+    var coffeeJSON = JSON.stringify(newCoffee);
+    localStorage.setItem('newCoffee', coffeeJSON )
+    console.log(newCoffee);
+    console.log(coffees);
 }
 
-document.getElementById('new-button').addEventListener('click', addNewCoffee)
+// function storeLocal() {
+//     var myObj, myJSON, text, obj;
+//
+//     myObj = { name: "John", age: 31, city: "New York" };
+//     myJSON = JSON.stringify(myObj);
+//     localStorage.setItem("testJSON", myJSON);
+//
+// // Retrieving data:
+//     text = localStorage.getItem("testJSON");
+//     obj = JSON.parse(text);
+//     document.getElementById("demo").innerHTML = obj.name;
+// }
 
-
-
-
-
-
-
-
+document.getElementById('new-button').addEventListener('click', addNewCoffee);
