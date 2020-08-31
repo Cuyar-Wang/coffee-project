@@ -43,6 +43,7 @@ function updateCoffees() {
     });
 
     document.getElementById('coffees').innerHTML = displayCoffee(filteredCoffees);
+    // displayStorageLocal()
 
     var filterCoffee = function(){
         var selectedCoffee = filteredCoffees.filter(function(coffee){
@@ -78,16 +79,16 @@ function storeIntoLocal(newItem) {
     var coffeeJSON = JSON.stringify(newItem);
     localStorage.setItem('newCoffee' + newItem.id, coffeeJSON);
 }
-function displayStorageLocal() {
-    for (var i = 15; i < 100; i++) {
-        var text = localStorage.getItem('newCoffee' + i);
-        var obj = JSON.parse(text);
-        var para = document.createElement("div");
-        para.innerHTML = `<a href ='#' onclick='storeCoffee("${obj.name}")' class='m-4 p-3'><h2 class='coffee-name text-center'>${obj.name}</h2><p class='coffee-roast text-center text-uppercase'>${obj.roast}</p></a>`;
-        document.getElementById("coffees").appendChild(para);
-        i++;
-    }
-}
+// function displayStorageLocal() {
+//     var i = 15;
+//     while (localStorage.getItem('newCoffee' + i)) {
+//         var text = localStorage.getItem('newCoffee' + i);
+//         coffees.push(text);
+//         console.log(coffees);
+//         i++;
+//     }
+// }
+// console.log(coffees);
 
 //TODO: Set up default. A separate array for the data and shopping cart.
 document.getElementById('new-button').addEventListener('click', addNewCoffee);

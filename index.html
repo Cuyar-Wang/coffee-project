@@ -15,16 +15,15 @@
         < / Coffee >
     </a>
     <div class="dropdown">
-        <button role="button" type="button" class="btn dropdown" data-toggle="dropdown">
+        <button role="button" type="button" class="btn dropdown shopping-cart-btn" data-toggle="dropdown">
             <i class="fas fa-shopping-cart"></i>
         </button>
         <div class="dropdown-menu cart-items" aria-labelledby="dropdownMenuLink">
-            <div id="cart_box"></div>
-            <a href="#" onclick ="clearLocal()">Clear Shopping Cart</a>
+            <div id="cart_box" class="text-center"></div>
+            <p class="text-center">
+                <a href="#" onclick ="clearLocal()" id="cart-logo">Clear Shopping Cart</a>
+            </p>
         </div>
-
-
-
     </div>
 </nav>
 <main class="container mt-5 mb-3">
@@ -65,7 +64,7 @@
     </section>
 </main>
 <hr>
-<div id="coffees" class="container d-flex flex-wrap align-content-center justify-content-center">
+<div id="coffees" class="container d-flex vh-100 flex-wrap justify-content-center">
 </div>
 <footer class="footer mt-auto py-3">
     <div class="container text-right">
