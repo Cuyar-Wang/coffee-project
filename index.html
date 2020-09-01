@@ -20,8 +20,9 @@
         </button>
         <div class="dropdown-menu cart-items" aria-labelledby="dropdownMenuLink">
             <div id="cart_box" class="text-center"></div>
-            <p class="text-center">
-                <a href="#" onclick ="clearLocal()" class="cart-logo">Empty Shopping Cart</a>
+            <p class="text-center clear-container">
+                <!--The following anchor clears the local memory with the clearLocal() function-->
+                <a href="#" onclick ="clearLocal()" class="cart-logo btn">Empty Shopping Cart</a>
             </p>
         </div>
     </div>
@@ -32,6 +33,7 @@
     <h1 class="">Coffee!</h1>
     <form>
         <label for="roast-selection"></label>
+        <!--select element with event listener as an attribute-->
         <select id="roast-selection" class="select-css my-3" onchange="updateCoffees()">
             <option value="all">all</option>
             <option value="light">light</option>

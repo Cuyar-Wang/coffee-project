@@ -1,5 +1,5 @@
 body {
-    background-color: #f2f1e7;
+    background-color: #f2f1e7 !important;
 }
 
 .coffee-name {
@@ -20,9 +20,11 @@ body {
 }
 
 .cart-items {
-    left: -203px !important;
-    top: 60px !important;
-    width: 270px;
+    left: -311px !important;
+    top: 57px !important;
+    width: 380px;
+    border: 3px solid #a96851 !important;
+    font-size: 1.5em !important;
     /*display: flex;*/
     /*justify-content: center;*/
 }
@@ -31,11 +33,22 @@ body {
     font-size: 1.5em !important;
     color: #f2f1e7 !important;
 }
-
+.clear-container{
+    margin: 8px 0 !important;
+}
  .cart-logo {
      color: #5c4d4d !important;
-
  }
+.clear-container a {
+    background-color:  #a96851 !important;
+    color: #f2f1e7 !important;
+ }
+.cart-row {
+    margin: 12px 0 !important;
+}
+.shopping-name{
+    color: #5c4d4d !important;
+}
 
 footer{
     background-color: #a96851;
@@ -59,7 +72,7 @@ label {
 
 input {
     border-radius: 5px;
-    border-color: #5c4d4d;
+    border-color: #a96851 !important;
 }
 
 .button {
@@ -67,7 +80,7 @@ input {
     background-color: #a96851 !important;
     font-size: 16px;
     text-transform: uppercase;
-    color: #5c4d4d;
+    color: #f2f1e7 !important;
 
 }
 
@@ -82,7 +95,7 @@ hr {
     font-size: 16px;
     font-family: sans-serif;
     font-weight: 700;
-    color: #444;
+    color: #5c4d4d;
     line-height: 1.3;
     padding: .6em 1.4em .5em .8em;
     width: 100%;
@@ -112,13 +125,15 @@ hr {
     border-color: #aaa;
     box-shadow: 0 0 1px 3px rgba(59, 153, 252, .7);
     box-shadow: 0 0 0 3px -moz-mac-focusring;
-    color: #222;
+    color: #5c4d4d;
     outline: none;
 }
 .select-css option {
     font-weight:normal;
 }
-
+#coffees{
+    min-height: 800px;
+}
 #coffees a {
     color: inherit;
     text-decoration: none;
@@ -137,5 +152,6 @@ hr {
     text-shadow: 2px 2px 2px white;
     width: 30%;
     border-bottom: 3px double #5c4d4d;
-    /*text-align: right;*/
+    box-shadow: 2px 2px 5px #a96851;
+
 }

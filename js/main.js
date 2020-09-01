@@ -16,9 +16,7 @@ var coffees = [
     {id: 13, name: 'Italian', roast: 'dark'},
     {id: 14, name: 'French', roast: 'dark'},
 ];
-
-//Show the array as a string
-
+// Grabs a specific array and sets it up as a string
 var displayCoffee = function(array){
     var html = "";
     array.forEach(function(coffee){
@@ -27,9 +25,10 @@ var displayCoffee = function(array){
     })
     return html;
 }
-
+// Updates the page with the current array with default 'all'
 updateCoffees();
 
+// select filter functionality
 function updateCoffees() {
     var selectedRoast = document.getElementById('roast-selection').value;
     var filteredCoffees = [];
@@ -41,23 +40,25 @@ function updateCoffees() {
             filteredCoffees.push(coffee);
         }
     });
+// At this point we have a new array that is filtered from the select
+    //show the new array using the displayCoffee(array)
 
     document.getElementById('coffees').innerHTML = displayCoffee(filteredCoffees);
-    // displayStorageLocal()
 
+    //search by coffee name in the input and uses the filter method to return an array that includes the character using the input onkeyup event listener
     var filterCoffee = function(){
         var selectedCoffee = filteredCoffees.filter(function(coffee){
             return coffee.name.toLowerCase().includes(document.getElementById('coffee-search').value.toLowerCase());
         })
-        // var inputValue= document.getElementById('coffee-search').value;
-        // console.log(inputValue);
-        // console.log(selectedCoffee);
         document.getElementById('coffees').innerHTML = displayCoffee(selectedCoffee);
     }
-
     document.getElementById('coffee-search').addEventListener('keyup', filterCoffee);
 }
-
+//takes user input with select and input values
+//sends alert if empty input is submitted
+//new coffee is pushed on to the 'original' array' applying an object including all the properties
+//if the coffee name and roast are duplicated it will send an alert
+//the new coffee array is re-displayed using the displayCoffee function
 function addNewCoffee() {
     var roastSelect= document.getElementById('roast-addition');
     var textAddition= document.getElementById("new-name");
@@ -76,38 +77,31 @@ function addNewCoffee() {
         document.getElementById('coffees').innerHTML = displayCoffee(coffees);
         storeIntoLocal(newCoffee);
     }
-    console.log(newCoffee);
-    console.log(coffees);
+
 }
+//submit button listener event
 document.getElementById('new-button').addEventListener('click', addNewCoffee);
-function storeIntoLocal(newItem) {
-    var coffeeJSON = JSON.stringify(newItem);
-    localStorage.setItem('newCoffee' + newItem.id, coffeeJSON);
+
+//Refactored function that has the shopping cart items html structure
+
+function shoppingPartElement (dataShow, i){
+    return "<p class='cart-row' id = '" + i + "'><span class='shopping-name mr-5'>" + dataShow + "</span><a class='ml-auto cart-logo' href='#' onclick = deleteItem(" + i + ")>Remove</a></p><hr>";
 }
-// function displayStorageLocal() {
-//     var i = 15;
-//     while (localStorage.getItem('newCoffee' + i)) {
-//         var text = localStorage.getItem('newCoffee' + i);
-//         coffees.push(text);
-//         console.log(coffees);
-//         i++;
-//     }
-// }
-// console.log(coffees);
-
-//TODO: Set up default. A separate array for the data and shopping cart.
-
-let shoppingArray = [];
-function defaultShopping(){
-    let parent = document.getElementById('cart_box');
+function removeChild(){let parent = document.getElementById('cart_box');
     while (parent.firstChild){
         parent.removeChild(parent.firstChild);
     }
+}
+//TODO: Set up the default display. A separate array for the data and shopping cart.
+
+let shoppingArray = [];
+function defaultShopping(){
+    removeChild();
    for(var i = 0; i < 20; i++) {
     if (window.localStorage.getItem('coffee' + i)) {
         let dataShow = window.localStorage.getItem('coffee' + i);
         let divResponse = document.createElement('div');
-        divResponse.innerHTML = "<p class id = '" + i + "'><span class='shopping-name mr-5'>" + dataShow + "</span><a class='ml-auto cart-logo' href='#' onclick = deleteItem(" + i + ")>Remove</a></p>";
+        divResponse.innerHTML = shoppingPartElement(dataShow, i);
         document.getElementById('cart_box').appendChild(divResponse);
         shoppingArray.push(dataShow);
     }
@@ -116,20 +110,18 @@ function defaultShopping(){
 }
 defaultShopping();
 
-//TODO: onclick function that stores the data by adding to the current array first and then storing it. Every time onclick is activated the local memory is stored again.
+
+//TODO: onclick function that stores the data by adding to the 'current' array first and then storing it. Every time onclick is activated the local memory is stored again.
 let storeCoffee = function(input){
-    shoppingArray.push(input);
+    shoppingArray.push(input); //updates the shopping cart array
     shoppingArray.forEach(function (shopping_item, i){
         window.localStorage.setItem('coffee' + i, shopping_item);
-    });
-    let parent = document.getElementById('cart_box');
-    while (parent.firstChild){
-        parent.removeChild(parent.firstChild);
-    }
+    }); //updates the data by saving over it
+   removeChild(); //removes previous html elements
     for (var i = 0; i < shoppingArray.length; i++){
         let dataShow = window.localStorage.getItem('coffee' + i);
         let divResponse = document.createElement('div');
-        divResponse.innerHTML = "<p  id = '" + i + "'><span class='shopping-name mr-5'>" + dataShow + "</span><a class='ml-auto cart-logo' href='#' onclick = deleteItem(" + i + ")>Remove</a></p>";
+        divResponse.innerHTML = shoppingPartElement(dataShow, i);
         document.getElementById('cart_box').appendChild(divResponse);
 
     }
@@ -144,21 +136,32 @@ let clearLocal = function() {
 }
 //TODO: add onclick on "remove" to delete from memory and display that specific div
 let deleteItem = function (input) {
-    let parent = document.getElementById('cart_box');
-    while (parent.firstChild) {
-        parent.removeChild(parent.firstChild);
-    }
+    removeChild(); //removing the previous HTML element
     window.localStorage.removeItem('coffee' + input);
-    shoppingArray.splice(input, 1);
-
+    shoppingArray.splice(input, 1); //gets rid of the element inside the actual array using its key number
     for (var i = 0; i < 20; i++) {
         if (window.localStorage.getItem('coffee' + i)) {
             let dataShow = window.localStorage.getItem('coffee' + i);
             let divResponse = document.createElement('div');
-            divResponse.innerHTML ="<p id = '" + i + "'><span class='shopping-name mr-5'>" + dataShow + "</span><a class='ml-auto cart-logo' href='#' onclick = deleteItem(" + i + ")>Remove</a></p>";
+            divResponse.innerHTML = shoppingPartElement(dataShow, i);
             document.getElementById('cart_box').appendChild(divResponse);
         }
 
     }
 }
+// A much better way to store the data for future applications due to its ability to store objects. Objects have more accessibility when trying to use various properties.
+function storeIntoLocal(newItem) {
+    var coffeeJSON = JSON.stringify(newItem);
+    localStorage.setItem('newCoffee' + newItem.id, coffeeJSON);
+}
 
+// function displayStorageLocal() {
+//     var i = 15;
+//     while (localStorage.getItem('newCoffee' + i)) {
+//         var text = localStorage.getItem('newCoffee' + i);
+//         coffees.push(text);
+//         console.log(coffees);
+//         i++;
+//     }
+// }
+// console.log(coffees);
