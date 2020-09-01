@@ -22,7 +22,7 @@ var coffees = [
 var displayCoffee = function(array){
     var html = "";
     array.forEach(function(coffee){
-        var eachCoffee = `<a href ='#' onclick='storeCoffee("${coffee.name}")' class='m-4 p-3'><h2 class='coffee-name text-center'>${coffee.name}</h2><p class='coffee-roast text-center text-uppercase'>${coffee.roast}</p></a>`;
+        var eachCoffee = `<a href ='#' onclick='storeCoffee("${coffee.name + ": " + coffee.roast}")' class='m-4 p-3'><h2 class='coffee-name text-center'>${coffee.name}</h2><p class='coffee-roast text-center text-uppercase'>${coffee.roast}</p></a>`;
         html += eachCoffee;
     })
     return html;
@@ -90,6 +90,8 @@ function storeIntoLocal(newItem) {
 // }
 // console.log(coffees);
 
+
+
 //TODO: Set up default. A separate array for the data and shopping cart.
 document.getElementById('new-button').addEventListener('click', addNewCoffee);
 let shoppingArray = [];
@@ -102,7 +104,7 @@ function defaultShopping(){
     if (window.localStorage.getItem('coffee' + i)) {
         let dataShow = window.localStorage.getItem('coffee' + i);
         let divResponse = document.createElement('div');
-        divResponse.innerHTML = "<p id = '" + i + "'>" + dataShow + "              <a href='#' onclick = deleteItem(" + i + ")>Remove</a></p>";
+        divResponse.innerHTML = "<p class id = '" + i + "'><span class='shopping-name mr-5'>" + dataShow + "</span><a class='ml-auto cart-logo' href='#' onclick = deleteItem(" + i + ")>Remove</a></p>";
         document.getElementById('cart_box').appendChild(divResponse);
         shoppingArray.push(dataShow);
     }
@@ -124,7 +126,7 @@ let storeCoffee = function(input){
     for (var i = 0; i < shoppingArray.length; i++){
         let dataShow = window.localStorage.getItem('coffee' + i);
         let divResponse = document.createElement('div');
-        divResponse.innerHTML = "<p id = '" + i + "'>" + dataShow + "              <a href='#' onclick = deleteItem(" + i + ")>Remove</a></p>";
+        divResponse.innerHTML = "<p  id = '" + i + "'><span class='shopping-name mr-5'>" + dataShow + "</span><a class='ml-auto cart-logo' href='#' onclick = deleteItem(" + i + ")>Remove</a></p>";
         document.getElementById('cart_box').appendChild(divResponse);
 
     }
@@ -150,7 +152,7 @@ let deleteItem = function (input) {
         if (window.localStorage.getItem('coffee' + i)) {
             let dataShow = window.localStorage.getItem('coffee' + i);
             let divResponse = document.createElement('div');
-            divResponse.innerHTML = "<p id = '" + i + "'>" + dataShow + "              <a href='#' onclick = deleteItem(" + i + ")>Remove</a></p>";
+            divResponse.innerHTML ="<p id = '" + i + "'><span class='shopping-name mr-5'>" + dataShow + "</span><a class='ml-auto cart-logo' href='#' onclick = deleteItem(" + i + ")>Remove</a></p>";
             document.getElementById('cart_box').appendChild(divResponse);
         }
 
