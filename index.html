@@ -5,15 +5,19 @@
     <title></title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css" integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+          integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css"
+          integrity="sha384-HzLeBuhoNPvSl5KYnjx0BT+WB0QEEqLprO+NBkkk5gbc67FTaL7XIGa2w1L0Xbgc" crossorigin="anonymous">
 </head>
 <body>
+<!------- NAV BAR ------->
 <nav class="navbar navbar-light coffee-nav">
     <a class="navbar-brand nav-logo" href="#">
         <i class="fas fa-coffee"></i>
         < / Coffee >
     </a>
+    <!------- SHOPPING CART DIV ------->
     <div class="dropdown">
         <button role="button" type="button" class="btn dropdown shopping-cart-btn" data-toggle="dropdown">
             <i class="fas fa-shopping-cart"></i>
@@ -22,61 +26,72 @@
             <div id="cart_box" class="text-center"></div>
             <p class="text-center clear-container">
                 <!--The following anchor clears the local memory with the clearLocal() function-->
-                <a href="#" onclick ="clearLocal()" class="cart-logo btn">Empty Shopping Cart</a>
+                <a href="#" onclick="clearLocal()" class="cart-logo btn">Empty Shopping Cart</a>
             </p>
         </div>
     </div>
 </nav>
+<!------- MAIN CONTAINER ------->
 <main class="container mt-5 mb-3">
     <section class="row">
-        <div class="col-4">
-    <h1 class="">Coffee!</h1>
-    <form>
-        <label for="roast-selection"></label>
-        <!--select element with event listener as an attribute-->
-        <select id="roast-selection" class="select-css my-3" onchange="updateCoffees()">
-            <option value="all">all</option>
-            <option value="light">light</option>
-            <option value="medium">medium</option>
-            <option value="dark">dark</option>
-        </select>
-        <label for="coffee-search" class="my-3">Search for the coffee name below:</label>
-        <br>
-        <input type="text" id="coffee-search" placeholder="Coffee Name..." class="w-100">
-    </form>
+        <!------- USER SELECTION AND SEARCH DIV ------->
+        <div class="col-md-4 col-sm-12 my-3">
+            <h1>Coffee!</h1>
+            <form>
+                <label for="roast-selection"></label>
+                <!--select element with event listener as an attribute-->
+                <select id="roast-selection" class="select-css my-3" onchange="updateCoffees()">
+                    <option value="all">all</option>
+                    <option value="light">light</option>
+                    <option value="medium">medium</option>
+                    <option value="dark">dark</option>
+                </select>
+                <label for="coffee-search" class="my-3">Search for the coffee name below:</label>
+                <br>
+                <input type="text" id="coffee-search" placeholder="Coffee Name..." class="w-100">
+            </form>
         </div>
-        <div class="col-6 offset-2">
-    <h1>Add a Coffee!</h1>
-    <form>
-        <label for="roast-addition" class="mb-3 mt-4">Choose type of roast:</label>
-        <select id="roast-addition" class="select-css my-3">
-            <option value="light">light</option>
-            <option value="medium">medium</option>
-            <option value="dark">dark</option>
-        </select>
-        <label for="new-name" class="my-3">Add your own coffee:</label>
-        <br>
-        <input id="new-name" type="text" placeholder="Name of Coffee..." class="w-100">
-        <br>
-        <div class="text-right">
-        <button id="new-button" type="button" class="btn button my-3">Submit</button>
-        </div>
-    </form>
+        <!------- USER INPUT NEW COFFEE DIV ------->
+        <div class="col-md-6 offset-md-2 col-sm-12 my-3">
+            <h1>Add a Coffee!</h1>
+            <form>
+                <label for="roast-addition" class="mb-3 mt-4">Choose type of roast:</label>
+                <select id="roast-addition" class="select-css my-3">
+                    <option value="light">light</option>
+                    <option value="medium">medium</option>
+                    <option value="dark">dark</option>
+                </select>
+                <label for="new-name" class="my-3">Add your own coffee:</label>
+                <br>
+                <input id="new-name" type="text" placeholder="Name of Coffee..." class="w-100">
+                <br>
+                <div class="text-right">
+                    <button id="new-button" type="button" class="btn button my-3">Submit</button>
+                </div>
+            </form>
         </div>
     </section>
 </main>
 <hr>
+<!------- COFFEE DISPLAY DIV ------->
 <div id="coffees" class="container d-flex flex-wrap justify-content-center">
 </div>
+<!------- FOOTER ------->
 <footer class="footer mt-auto py-3">
     <div class="container text-right">
         <span class="">&#169 Cuyar-Wang 2020</span>
     </div>
 </footer>
-
-    <script src="js/main.js"></script>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<script src="js/main.js"></script>
+<!------- BOOTSTRAP ------->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"
+        integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV"
+        crossorigin="anonymous"></script>
 </body>
 </html>
