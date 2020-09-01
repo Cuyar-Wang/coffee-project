@@ -61,20 +61,25 @@ function updateCoffees() {
 function addNewCoffee() {
     var roastSelect= document.getElementById('roast-addition');
     var textAddition= document.getElementById("new-name");
-    var newCoffee = {id: coffees.length + 1, name: textAddition.value, roast: roastSelect.value};
-    for (var i = 0; i < coffees.length; i++) {
-        if (coffees[i].name === newCoffee.name && coffees[i].roast === newCoffee.roast) {
-            alert('This coffee already exists.');
-            return;
+
+    if (textAddition.value === '') {
+        alert('Please put in a valid coffee name');
+    } else {
+        var newCoffee = {id: coffees.length + 1, name: textAddition.value, roast: roastSelect.value};
+        for (var i = 0; i < coffees.length; i++) {
+            if (coffees[i].name === newCoffee.name && coffees[i].roast === newCoffee.roast) {
+                alert('This coffee already exists.');
+                return;
+            }
         }
+        coffees.push(newCoffee);
+        document.getElementById('coffees').innerHTML = displayCoffee(coffees);
+        storeIntoLocal(newCoffee);
     }
-    coffees.push(newCoffee);
-    document.getElementById('coffees').innerHTML = displayCoffee(coffees);
-    storeIntoLocal(newCoffee);
     console.log(newCoffee);
     console.log(coffees);
 }
-
+document.getElementById('new-button').addEventListener('click', addNewCoffee);
 function storeIntoLocal(newItem) {
     var coffeeJSON = JSON.stringify(newItem);
     localStorage.setItem('newCoffee' + newItem.id, coffeeJSON);
@@ -90,10 +95,8 @@ function storeIntoLocal(newItem) {
 // }
 // console.log(coffees);
 
-
-
 //TODO: Set up default. A separate array for the data and shopping cart.
-document.getElementById('new-button').addEventListener('click', addNewCoffee);
+
 let shoppingArray = [];
 function defaultShopping(){
     let parent = document.getElementById('cart_box');
